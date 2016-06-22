@@ -1,0 +1,4 @@
+.idea
+client_dist
+node_modules
+server_dist

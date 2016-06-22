@@ -1,0 +1,48 @@
+{
+  "name": "webpack-react--template",
+  "version": "1.0.0",
+  "description": "a generic web app template using webpack and react",
+  "main": "server/index.js",
+  "scripts": {
+    "build": "eslint server && rimraf server_dist && babel server -d server_dist && webpack --progress",
+    "start": "cd server_dist && node index.js",
+    "start-debug": "eslint server && cd server && nodemon index.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexyuly/webpack-react-template.git"
+  },
+  "author": "Alex Yuly",
+  "license": "MIT",
+  "homepage": "https://github.com/alexyuly/webpack-react-template",
+  "dependencies": {
+    "express": "^4.14.0",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "clean-webpack-plugin": "^0.1.9",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.13.1",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-import": "^1.9.2",
+    "eslint-plugin-jsx-a11y": "^1.5.3",
+    "eslint-plugin-react": "^5.2.2",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.21.0",
+    "nodemon": "^1.9.2",
+    "rimraf": "^2.5.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.14.0"
+  }
+}
