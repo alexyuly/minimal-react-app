@@ -1,5 +1,5 @@
 {
-  "name": "webpack-react--template",
+  "name": "webpack-react-template",
   "version": "1.0.0",
   "description": "a generic web app template using webpack and react",
   "main": "server/index.js",
