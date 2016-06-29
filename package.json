@@ -1,6 +1,6 @@
 {
   "name": "full-stack-template",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI (in progress)",
   "main": "server/index.js",
   "scripts": {
@@ -17,7 +17,6 @@
   "homepage": "https://github.com/alexyuly/full-stack-template",
   "dependencies": {
     "express": "^4.14.0",
-    "jquery": "^2.2.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },

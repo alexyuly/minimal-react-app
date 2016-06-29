@@ -10,17 +10,21 @@ const HotModuleReplacementPlugin = webpack.HotModuleReplacementPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const NoErrorsPlugin = webpack.NoErrorsPlugin;
 const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
-const ProvidePlugin = webpack.ProvidePlugin;
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
-const app = path.join(__dirname, 'client', 'app.js');
-const globals = [
-  'jquery',
-];
-const imports = [
-  'react',
-  'react-dom',
-];
+const paths = {
+  dist: path.resolve('./client_dist'),
+  html_template: path.resolve('./client/html/index.html'),
+  imports: [
+    'react',
+    'react-dom',
+  ],
+  src: path.resolve('./client/app.js'),
+  webpack: [
+    'webpack/hot/dev-server',
+    'webpack-hot-middleware/client',
+  ],
+};
 
 const common = {
   module: {
@@ -40,11 +44,7 @@ const common = {
     new HtmlWebpackPlugin({
       inject: 'body',
       minify: { collapseWhitespace: true, html5: true },
-      template: path.join(__dirname, 'client', 'html', 'index.html'),
-    }),
-    new ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
+      template: paths.html_template,
     }),
   ],
 };
@@ -52,11 +52,11 @@ const common = {
 const specific = {
   build: {
     entry: {
-      app: app,
-      vendor: globals.concat(imports),
+      app: paths.src,
+      vendor: paths.imports,
     },
     output: {
-      path: path.join(__dirname, 'client_dist'),
+      path: paths.dist,
       filename: '[name].[chunkhash].js',
     },
     module: {
@@ -68,7 +68,7 @@ const specific = {
       ],
     },
     plugins: [
-      new CleanPlugin(path.join(__dirname, 'client_dist')),
+      new CleanPlugin(paths.dist),
       new CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
       new DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
       new ExtractTextPlugin('[name].[chunkhash].css'),
@@ -76,8 +76,7 @@ const specific = {
     ],
   },
   debug: {
-    entry: ['webpack/hot/dev-server', 'webpack-hot-middleware/client']
-      .concat(globals).concat(app),
+    entry: paths.webpack.concat(paths.src),
     output: {
       path: '/',
     },
