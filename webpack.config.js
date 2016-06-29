@@ -13,13 +13,13 @@ const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
 const paths = {
-  dist: path.resolve('./client_dist'),
-  html_template: path.resolve('./client/html/index.html'),
+  dist: path.join(__dirname, 'client_dist'),
+  html_template: path.join(__dirname, 'client', 'html', 'index.html'),
   imports: [
     'react',
     'react-dom',
   ],
-  src: path.resolve('./client/app.js'),
+  src: path.join(__dirname, 'client', 'app.js'),
   webpack: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
@@ -50,7 +50,7 @@ const common = {
 };
 
 const specific = {
-  build: {
+  'build': {
     entry: {
       app: paths.src,
       vendor: paths.imports,
@@ -75,7 +75,7 @@ const specific = {
       new UglifyJsPlugin({ minimize: true, compress: { warnings: false } }),
     ],
   },
-  debug: {
+  'start-debug': {
     entry: paths.webpack.concat(paths.src),
     output: {
       path: '/',

@@ -1,6 +1,6 @@
 {
   "name": "full-stack-template",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI (in progress)",
   "main": "server/index.js",
   "scripts": {
