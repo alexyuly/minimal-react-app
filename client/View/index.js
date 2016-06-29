@@ -1,42 +1,37 @@
-import React from 'react';
-import AppBar from 'material-ui/AppBar';
+import React, { PropTypes } from 'react';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Container from './Container';
+import MainContent from './MainContent';
+import Navbar from './Navbar';
+import Sidebar from './Sidebar';
 
-export default () => (
-  <MuiThemeProvider
-    muiTheme={getMuiTheme({
-      appBar: {
-        height: 50,
-      },
-    })}
-  >
-    <div>
-      <div
-        style={{
-          position: 'fixed',
-          top: '0px',
-          height: '50px',
-          width: '100%',
-        }}
-      >
-        <AppBar
-          title="Untitled web app"
-          titleStyle={{
-            fontSize: '18px',
-          }}
+const View = (props) => {
+  const { brandWidth, navbarHeight } = props;
+  return (
+    <MuiThemeProvider
+      muiTheme={getMuiTheme({
+        appBar: {
+          height: navbarHeight,
+        },
+      })}
+    >
+      <Container>
+        <Navbar
+          brandWidth={brandWidth}
+          height={navbarHeight}
         />
-      </div>
-      <div
-        style={{
-          position: 'fixed',
-          top: '50px',
-          bottom: '0px',
-          width: '100%',
-        }}
-      >
-        &nbsp;
-      </div>
-    </div>
-  </MuiThemeProvider>
-);
+        <MainContent>
+          <Sidebar width={brandWidth} />
+        </MainContent>
+      </Container>
+    </MuiThemeProvider>
+  );
+};
+
+View.propTypes = {
+  brandWidth: PropTypes.number,
+  navbarHeight: PropTypes.number,
+};
+
+export default View;
