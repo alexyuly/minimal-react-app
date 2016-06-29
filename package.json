@@ -1,7 +1,7 @@
 {
-  "name": "webpack-react-template",
-  "version": "1.0.0",
-  "description": "a generic web app template using webpack and react",
+  "name": "full-stack-template",
+  "version": "1.0.1",
+  "description": "Full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI (in progress)",
   "main": "server/index.js",
   "scripts": {
     "build": "eslint server && rimraf server_dist && babel server -d server_dist && webpack --progress",
@@ -10,13 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexyuly/webpack-react-template.git"
+    "url": "https://github.com/alexyuly/full-stack-template.git"
   },
   "author": "Alex Yuly",
   "license": "MIT",
-  "homepage": "https://github.com/alexyuly/webpack-react-template",
+  "homepage": "https://github.com/alexyuly/full-stack-template",
   "dependencies": {
     "express": "^4.14.0",
+    "jquery": "^2.2.4",
     "react": "^15.1.0",
     "react-dom": "^15.1.0"
   },
@@ -42,7 +43,8 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.11.0",
     "webpack-merge": "^0.14.0"
   }
 }

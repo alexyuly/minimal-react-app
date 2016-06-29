@@ -1,6 +1,8 @@
-#webpack-react-template
+# full-stack-template
 
-a generic web app template using webpack and react
+A full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI.
+
+*Many of the above components are being actively developed or will be develoepd in the future.*
 
 ## NPM scripts
 

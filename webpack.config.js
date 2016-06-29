@@ -1,27 +1,28 @@
 const merge = require('webpack-merge');
 const path = require('path');
 const webpack = require('webpack');
+
 const CleanPlugin = require('clean-webpack-plugin');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const DefinePlugin = webpack.DefinePlugin;
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HotModuleReplacementPlugin = webpack.HotModuleReplacementPlugin;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const NoErrorsPlugin = webpack.NoErrorsPlugin;
+const OccurrenceOrderPlugin = webpack.optimize.OccurrenceOrderPlugin;
+const ProvidePlugin = webpack.ProvidePlugin;
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
-const clientDistPath = path.join(__dirname, 'client_dist');
+const app = path.join(__dirname, 'client', 'app.js');
+const globals = [
+  'jquery',
+];
+const imports = [
+  'react',
+  'react-dom',
+];
 
-const commonConfig = {
-  entry: {
-    app: path.join(__dirname, 'client', 'app.js'),
-    vendor: [
-      'react',
-      'react-dom',
-    ],
-  },
-  output: {
-    path: clientDistPath,
-  },
+const common = {
   module: {
     loaders: [
       {
@@ -39,14 +40,23 @@ const commonConfig = {
     new HtmlWebpackPlugin({
       inject: 'body',
       minify: { collapseWhitespace: true, html5: true },
-      template: path.join(__dirname, 'client', 'pages', 'index.html'),
+      template: path.join(__dirname, 'client', 'html', 'index.html'),
     }),
-  ]
+    new ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+    }),
+  ],
 };
 
-const specificConfig = {
-  'build': {
+const specific = {
+  build: {
+    entry: {
+      app: app,
+      vendor: globals.concat(imports),
+    },
     output: {
+      path: path.join(__dirname, 'client_dist'),
       filename: '[name].[chunkhash].js',
     },
     module: {
@@ -58,17 +68,18 @@ const specificConfig = {
       ],
     },
     plugins: [
-      new CleanPlugin(clientDistPath),
+      new CleanPlugin(path.join(__dirname, 'client_dist')),
       new CommonsChunkPlugin({ names: ['vendor', 'manifest'] }),
       new DefinePlugin({ 'process.env.NODE_ENV': '"production"' }),
       new ExtractTextPlugin('[name].[chunkhash].css'),
       new UglifyJsPlugin({ minimize: true, compress: { warnings: false } }),
     ],
   },
-  'start-debug': {
+  debug: {
+    entry: ['webpack/hot/dev-server', 'webpack-hot-middleware/client']
+      .concat(globals).concat(app),
     output: {
-      filename: '[name].js',
-      publicPath: '/',
+      path: '/',
     },
     devtool: 'source-map',
     module: {
@@ -81,10 +92,12 @@ const specificConfig = {
     },
     plugins: [
       new DefinePlugin({ 'process.env.NODE_ENV': '"debug"' }),
+      new OccurrenceOrderPlugin(),
       new HotModuleReplacementPlugin(),
+      new NoErrorsPlugin(),
     ],
-  }
+  },
 };
 
-const environment = process.env.npm_lifecycle_event;
-module.exports = merge(commonConfig, specificConfig[environment]);
+const target = process.env.npm_lifecycle_event;
+module.exports = merge(common, specific[target]);
