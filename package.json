@@ -1,11 +1,11 @@
 {
   "name": "full-stack-template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI (in progress)",
   "main": "server/index.js",
   "scripts": {
     "build": "eslint server && rimraf server_dist && babel server -d server_dist && webpack --progress",
-    "start": "cd server_dist && node index.js",
+    "start": "npm run build && cd server_dist && node index.js",
     "start-debug": "eslint server && cd server && nodemon index.js --exec babel-node"
   },
   "repository": {
@@ -17,8 +17,13 @@
   "homepage": "https://github.com/alexyuly/full-stack-template",
   "dependencies": {
     "express": "^4.14.0",
+    "express-graphql": "^0.5.3",
+    "graphql": "^0.6.0",
+    "graphql-relay": "^0.4.2",
+    "material-ui": "^0.15.1",
     "react": "^15.1.0",
-    "react-dom": "^15.1.0"
+    "react-dom": "^15.1.0",
+    "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",

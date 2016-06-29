@@ -16,8 +16,10 @@ const paths = {
   dist: path.join(__dirname, 'client_dist'),
   html_template: path.join(__dirname, 'client', 'html', 'index.html'),
   imports: [
+    'material-ui',
     'react',
     'react-dom',
+    'react-tap-event-plugin',
   ],
   src: path.join(__dirname, 'client', 'app.js'),
   webpack: [
