@@ -1,7 +1,7 @@
 {
   "name": "full-stack-template",
   "version": "1.0.5",
-  "description": "Full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI (in progress)",
+  "description": "A modern Node full stack template using Webpack, React, Redux, Material-UI, Express, GraphQL, Relay",
   "main": "server/index.js",
   "scripts": {
     "build": "eslint server && rimraf server_dist && babel server -d server_dist && webpack --progress",

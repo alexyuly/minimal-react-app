@@ -1,15 +1,15 @@
 # full-stack-template
 
-A full stack template using Webpack, Express, GraphQL, Relay, React, Redux, Material-UI.
+A modern Node full stack template using Webpack, React, Redux, Material-UI, Express, GraphQL, Relay.
 
-*Many of the above components are being actively developed or will be develoepd in the future.*
+*Development is in progress.*
 
 ## NPM scripts
 
 - `npm run build` - Build the web app for production.
 
-- `npm run start` - Start the last production build.
+- `npm run start` - Build and then start the web app for production.
 
-- `npm run start-debug` - Start nodemon and webpack dev server to run a slower debug build and watch for changes.
+- `npm run start-debug` - Run a debug build that reloads when code changes.
 
 By default the webserver is set to serve port 80.
