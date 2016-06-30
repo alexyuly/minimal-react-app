@@ -16,9 +16,11 @@ const paths = {
   dist: path.join(__dirname, 'client_dist'),
   html_template: path.join(__dirname, 'client', 'html', 'index.html'),
   imports: [
+    'babel-polyfill',
     'material-ui',
     'react',
     'react-dom',
+    'react-relay',
     'react-tap-event-plugin',
   ],
   src: path.join(__dirname, 'client', 'app.js'),

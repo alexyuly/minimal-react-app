@@ -1,4 +1,17 @@
-import { GraphQLSchema } from 'graphql';
+import { GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { nodeField } from './nodeDefinitions';
+import dataPointType from './dataPointType';
+import getDataPoint from './getDataPoint';
 
-// TODO Alex
-export default new GraphQLSchema();
+export default new GraphQLSchema({
+  query: new GraphQLObjectType({
+    name: 'Query',
+    fields: () => ({
+      node: nodeField,
+      dataPoint: {
+        type: dataPointType,
+        resolve: () => getDataPoint(),
+      },
+    }),
+  }),
+});

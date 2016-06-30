@@ -1,7 +1,8 @@
 import React, { PropTypes } from 'react';
 import AppBar from 'material-ui/AppBar';
-import MenuButton from './MenuButton';
-import UserButton from './UserButton';
+import IconButton from 'material-ui/IconButton';
+import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
+import SocialPerson from 'material-ui/svg-icons/social/person';
 
 const Navbar = (props) => {
   const { brandWidth, height } = props;
@@ -17,7 +18,11 @@ const Navbar = (props) => {
     >
       <div style={{ flex: `0 ${brandWidth}px` }}>
         <AppBar
-          iconElementRight={<MenuButton />}
+          iconElementRight={
+            <IconButton>
+              <NavigationMenu color="#ffffff" />
+            </IconButton>
+          }
           showMenuIconButton={false}
           style={{ paddingLeft: '16px', paddingRight: '16px' }}
           title="Untitled web app"
@@ -26,7 +31,11 @@ const Navbar = (props) => {
       </div>
       <div style={{ flex: '1 auto' }}>
         <AppBar
-          iconElementRight={<UserButton />}
+          iconElementRight={
+            <IconButton>
+              <SocialPerson color="#ffffff" />
+            </IconButton>
+          }
           showMenuIconButton={false}
           style={{ paddingLeft: '16px', paddingRight: '16px' }}
           title="Something could go here"

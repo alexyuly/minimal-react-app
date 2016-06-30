@@ -16,6 +16,8 @@
   "license": "MIT",
   "homepage": "https://github.com/alexyuly/full-stack-template",
   "dependencies": {
+    "babel-polyfill": "^6.9.1",
+    "babel-relay-plugin": "^0.9.1",
     "express": "^4.14.0",
     "express-graphql": "^0.5.3",
     "graphql": "^0.6.0",
@@ -23,6 +25,7 @@
     "material-ui": "^0.15.1",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",
+    "react-relay": "^0.9.1",
     "react-tap-event-plugin": "^1.0.0"
   },
   "devDependencies": {
