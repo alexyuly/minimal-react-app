@@ -1,9 +1,32 @@
-import './css/app.css';
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { PropTypes } from 'react';
+import Relay from 'react-relay';
 import View from './View';
 
-ReactDOM.render(
-  <View brandWidth={300} navbarHeight={50} />,
-  document.getElementById('render-target')
+const App = (props) => (
+  <View
+    brandWidth={300}
+    dataCollection={props.dataCollection}
+    navbarHeight={50}
+  />
 );
+
+App.propTypes = {
+  dataCollection: PropTypes.object,
+};
+
+export default Relay.createContainer(App, {
+  fragments: {
+    dataCollection: () => Relay.QL`
+      fragment on DataCollection {
+        dataPoints(first: 10) {
+          edges {
+            node {
+              id
+              data
+            }
+          }
+        }
+      }
+    `,
+  },
+});

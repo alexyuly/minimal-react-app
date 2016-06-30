@@ -1,4 +1,6 @@
 import express from 'express';
+import graphQLHTTP from 'express-graphql';
+import schema from './data/schema';
 import webpack from 'webpack';
 import webpackConfig from '../webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';
@@ -15,12 +17,13 @@ export default (port) => {
   } else {
     server.use('/', express.static('../client_dist'));
   }
+  server.use('/graphql', graphQLHTTP({ graphiql: true, pretty: true, schema }));
   server.listen(port, error => {
     if (error) {
       console.log(error);
       process.exit(1);
     } else {
-      console.log(`Started webserver on port ${port}`);
+      console.log(`Started webserver on port ${port}.`);
     }
   });
 };

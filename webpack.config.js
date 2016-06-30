@@ -23,7 +23,7 @@ const paths = {
     'react-relay',
     'react-tap-event-plugin',
   ],
-  src: path.join(__dirname, 'client', 'app.js'),
+  src: path.join(__dirname, 'client', 'index.js'),
   webpack: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',

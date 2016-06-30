@@ -15,7 +15,7 @@ const Sidebar = (props) => {
 };
 
 Sidebar.propTypes = {
-  children: PropTypes.number,
+  children: PropTypes.node,
   width: PropTypes.number,
 };
 

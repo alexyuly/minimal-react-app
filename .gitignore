@@ -1,4 +1,6 @@
 .idea
 client_dist
+graphql.config.json
 node_modules
+server/data/schema.json
 server_dist

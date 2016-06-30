@@ -1,16 +1,16 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 import { nodeField } from './nodeDefinitions';
-import dataPointType from './dataPointType';
-import getDataPoint from './getDataPoint';
+import dataCollectionType from './classes/DataCollection/type';
+import dataSource from './dataSource';
 
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
     name: 'Query',
     fields: () => ({
       node: nodeField,
-      dataPoint: {
-        type: dataPointType,
-        resolve: () => getDataPoint(),
+      dataCollection: {
+        type: dataCollectionType,
+        resolve: () => dataSource,
       },
     }),
   }),
