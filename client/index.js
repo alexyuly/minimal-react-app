@@ -3,16 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Relay from 'react-relay';
 import App from './App';
-
-const AppRoute = class extends Relay.Route {};
-AppRoute.routeName = 'AppRoute';
-AppRoute.queries = {
-  dataCollection: () => Relay.QL`
-    query {
-      dataCollection
-    }
-  `,
-};
+import AppRoute from './AppRoute';
 
 ReactDOM.render(
   <Relay.RootContainer

@@ -102,5 +102,4 @@ const specific = {
   },
 };
 
-const target = process.env.npm_lifecycle_event;
-module.exports = merge(common, specific[target]);
+module.exports = merge(common, specific[process.env.npm_lifecycle_event]);
