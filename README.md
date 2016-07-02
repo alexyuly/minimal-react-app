@@ -1,6 +1,6 @@
 # full-stack-template
 
-A modern Node full stack template using Webpack, React, Redux, Material-UI, Express, GraphQL, Relay.
+A modern Node full stack template using Webpack, React, Material-UI, GraphQL, Relay, Express.
 
 ## Useful NPM scripts
 

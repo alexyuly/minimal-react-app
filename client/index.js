@@ -6,9 +6,6 @@ import App from './App';
 import AppRoute from './AppRoute';
 
 ReactDOM.render(
-  <Relay.RootContainer
-    Component={App}
-    route={new AppRoute()}
-  />,
+  <Relay.RootContainer Component={App} route={new AppRoute()} />,
   document.getElementById('render-target')
 );

@@ -8,7 +8,6 @@ import {
 import { GraphQLObjectType } from 'graphql';
 import { nodeInterface } from '../../nodeDefinitions';
 import dataPointType from '../DataPoint/type';
-import dataSource from '../../dataSource';
 
 const { connectionType: dataPointConnection } = connectionDefinitions({
   name: 'DataPoint',
@@ -22,7 +21,7 @@ export default new GraphQLObjectType({
     dataPoints: {
       type: dataPointConnection,
       args: connectionArgs,
-      resolve: (_, args) => connectionFromArray(dataSource.dataPoints, args),
+      resolve: (parent, args) => connectionFromArray(parent.dataPoints, args),
     },
   }),
   interfaces: () => [nodeInterface],
