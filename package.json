@@ -1,6 +1,6 @@
 {
   "name": "full-stack-template",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A modern Node full stack template using Webpack, React, Material-UI, GraphQL, Relay, Express, and Tape",
   "main": "server/index.js",
   "scripts": {

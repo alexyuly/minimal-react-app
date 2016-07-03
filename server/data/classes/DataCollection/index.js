@@ -1,5 +1,5 @@
 export class DataCollection {
   constructor(dataPoints) {
-    this.dataPoints = dataPoints;
+    this.dataPoints = dataPoints.slice();
   }
 }
