@@ -6,7 +6,7 @@ import webpackConfig from '../webpack.config';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 
-export default () => {
+export default (port) => new Promise(resolve => {
   const server = express();
   if (process.env.npm_lifecycle_event === 'start-debug') {
     const compiler = webpack(webpackConfig);
@@ -16,6 +16,7 @@ export default () => {
   } else {
     server.use('/', express.static('../client_dist'));
   }
-  server.use('/graphql', graphQLHTTP({ graphiql: true, pretty: true, schema }));
-  return server;
-};
+  server
+    .use('/graphql', graphQLHTTP({ graphiql: true, pretty: true, schema }))
+    .listen(port, () => resolve(server));
+});

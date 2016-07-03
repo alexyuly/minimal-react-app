@@ -1,24 +1,24 @@
 import { fromGlobalId, nodeDefinitions } from 'graphql-relay';
-import DataCollection from './classes/DataCollection';
+import { getDataCollection, getDataPoint } from './sources/dataPoints';
+import { DataCollection } from './classes/DataCollection';
+import { DataPoint } from './classes/DataPoint';
 import dataCollectionType from './classes/DataCollection/type';
-import DataPoint from './classes/DataPoint';
 import dataPointType from './classes/DataPoint/type';
-import dataSource from './dataSource';
 
 export const { nodeInterface, nodeField } = nodeDefinitions(
   globalId => {
     const { type, id } = fromGlobalId(globalId);
     if (type === 'DataCollection') {
-      return dataSource;
+      return getDataCollection();
     } else if (type === 'DataPoint') {
-      return dataSource.dataPoints[id];
+      return getDataPoint(id);
     }
     return null;
   },
   obj => {
-    if (obj instanceof DataCollection) {
+    if (DataCollection.defines(obj)) {
       return dataCollectionType;
-    } else if (obj instanceof DataPoint) {
+    } else if (DataPoint.defines(obj)) {
       return dataPointType;
     }
     return null;

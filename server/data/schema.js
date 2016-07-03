@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql';
 import { nodeField } from './nodeDefinitions';
+import { getDataCollection } from './sources/dataPoints';
 import dataCollectionType from './classes/DataCollection/type';
-import dataSource from './dataSource';
 
 export default new GraphQLSchema({
   query: new GraphQLObjectType({
@@ -10,7 +10,7 @@ export default new GraphQLSchema({
       node: nodeField,
       dataCollection: {
         type: dataCollectionType,
-        resolve: () => dataSource,
+        resolve: () => getDataCollection(),
       },
     }),
   }),
