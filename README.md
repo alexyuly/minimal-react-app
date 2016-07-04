@@ -1,6 +1,6 @@
 # full-stack-template
 
-[![CircleCI](https://circleci.com/gh/alexyuly/full-stack-template.svg?style=svg)](https://circleci.com/gh/alexyuly/full-stack-template)
+[![CircleCI](https://circleci.com/gh/alexyuly/full-stack-template.svg?style=svg&circle-token=39c9879afcf215a11a96348ce6d1bbefc04e65de)](https://circleci.com/gh/alexyuly/full-stack-template)
 
 A modern Node full stack template using Webpack, React, Material-UI, GraphQL, Relay, Express, and Tape.
 
