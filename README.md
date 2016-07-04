@@ -1,5 +1,7 @@
 # full-stack-template
 
+[![CircleCI](https://circleci.com/gh/alexyuly/full-stack-template.svg?style=svg)](https://circleci.com/gh/alexyuly/full-stack-template)
+
 A modern Node full stack template using Webpack, React, Material-UI, GraphQL, Relay, Express, and Tape.
 
 ## Useful NPM scripts
