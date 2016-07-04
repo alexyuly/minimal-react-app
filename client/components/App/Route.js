@@ -10,4 +10,5 @@ AppRoute.queries = {
   `,
 };
 
+
 export default AppRoute;

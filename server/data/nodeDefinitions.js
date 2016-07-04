@@ -16,9 +16,9 @@ export const { nodeInterface, nodeField } = nodeDefinitions(
     return null;
   },
   obj => {
-    if (DataCollection.defines(obj)) {
+    if (obj instanceof DataCollection) {
       return dataCollectionType;
-    } else if (DataPoint.defines(obj)) {
+    } else if (obj instanceof DataPoint) {
       return dataPointType;
     }
     return null;
