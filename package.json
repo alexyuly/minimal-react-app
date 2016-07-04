@@ -23,7 +23,11 @@
       "schema": "./server/data/schema.json"
     }
   },
-  "devDependencies": {
+  "engines": {
+    "node": "4.4.4",
+    "npm": "2.15.1"
+  },
+  "dependencies": {
     "babel-cli": "^6.10.1",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
