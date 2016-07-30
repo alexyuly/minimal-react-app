@@ -1,25 +1,28 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const Container = (props) => (
-  <div
-    style={{
-      position: 'fixed',
-      top: '0px',
-      bottom: '0px',
-      left: '0px',
-      right: '0px',
-      display: 'flex',
-      flexFlow: 'column nowrap',
-      justifyContent: 'stretch',
-      alignItems: 'stretch',
-    }}
-  >
-    {props.children}
-  </div>
-);
-
-Container.propTypes = {
-  children: PropTypes.node,
-};
+class Container extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+  };
+  render() {
+    return (
+      <div
+        style={{
+          alignItems: 'stretch',
+          bottom: '0px',
+          display: 'flex',
+          flexFlow: 'column nowrap',
+          justifyContent: 'stretch',
+          left: '0px',
+          position: 'fixed',
+          right: '0px',
+          top: '0px',
+        }}
+      >
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 export default Container;

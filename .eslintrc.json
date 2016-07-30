@@ -1,7 +1,12 @@
 {
   "extends": "airbnb",
   "installedESLint": true,
+  "parser": "babel-eslint",
   "plugins": [
     "react"
-  ]
+  ],
+  "rules": {
+    "react/prefer-stateless-function": "off",
+    "strict": 0
+  }
 }

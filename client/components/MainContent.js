@@ -1,21 +1,24 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const MainContent = (props) => (
-  <div
-    style={{
-      flex: '1 auto',
-      display: 'flex',
-      flexFlow: 'row nowrap',
-      justifyContent: 'stretch',
-      alignItems: 'stretch',
-    }}
-  >
-    {props.children}
-  </div>
-);
-
-MainContent.propTypes = {
-  children: PropTypes.node,
-};
+class MainContent extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+  };
+  render() {
+    return (
+      <div
+        style={{
+          flex: '1 auto',
+          display: 'flex',
+          flexFlow: 'row nowrap',
+          justifyContent: 'stretch',
+          alignItems: 'stretch',
+        }}
+      >
+        {this.props.children}
+      </div>
+    );
+  }
+}
 
 export default MainContent;

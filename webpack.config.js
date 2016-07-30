@@ -17,11 +17,14 @@ const paths = {
   html_template: path.join(__dirname, 'client', 'html', 'index.html'),
   imports: [
     'babel-polyfill',
+    'immutable',
     'material-ui',
     'react',
     'react-dom',
-    'react-relay',
+    'react-redux',
     'react-tap-event-plugin',
+    'redux',
+    'socket.io-client',
   ],
   src: path.join(__dirname, 'client', 'index.js'),
   webpack: [
@@ -79,7 +82,7 @@ const specific = {
       new UglifyJsPlugin({ minimize: true, compress: { warnings: false } }),
     ],
   },
-  'start-debug': {
+  'debug': {
     entry: paths.webpack.concat(paths.src),
     output: {
       path: '/',

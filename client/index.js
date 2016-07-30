@@ -1,11 +1,18 @@
 import './css/app.css';
+
+import io from 'socket.io-client';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Relay from 'react-relay';
-import App from './components/App/index';
-import AppRoute from './components/App/Route';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import bindServerEvents from './util/bindServerEvents';
+import store from './util/store';
 
 ReactDOM.render(
-  <Relay.RootContainer Component={App} route={new AppRoute()} />,
+  <Provider store={store}>
+    <App />
+  </Provider>,
   document.getElementById('render-target')
 );
+
+bindServerEvents(io(location.origin));
