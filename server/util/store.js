@@ -5,7 +5,6 @@ import Immutable from 'immutable';
 const ADD_CLIENT = 'ADD_CLIENT';
 const REMOVE_CLIENT = 'REMOVE_CLIENT';
 const MERGE_IN_MODEL = 'MERGE_IN_MODEL';
-const REMOVE_IN_MODEL = 'REMOVE_IN_MODEL';
 
 export function addClient(socket) {
   return {
@@ -21,41 +20,18 @@ export function removeClient(socket) {
   };
 }
 
-export function mergeInModel(path, value) {
+export function mergeInModel(value, path = []) {
   return {
     type: MERGE_IN_MODEL,
     payload: { path, value },
   };
 }
 
-export function removeInModel(path) {
-  return {
-    type: REMOVE_IN_MODEL,
-    payload: { path },
-  };
-}
-
 const initialState = Immutable.fromJS({
   clients: {},
-  model: {
-    data: [
-      {
-        id: 1,
-        content: 'Datum 1',
-      },
-      {
-        id: 2,
-        content: 'Datum 2',
-      },
-      {
-        id: 3,
-        content: 'Datum 3',
-      },
-    ],
-  },
 });
 
-function reducer(state = initialState, action) {
+export function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_CLIENT: {
@@ -65,14 +41,6 @@ function reducer(state = initialState, action) {
     case REMOVE_CLIENT: {
       const { socket } = payload;
       return state.removeIn(['clients', socket.id]);
-    }
-    case MERGE_IN_MODEL: {
-      const { path, value } = payload;
-      return state.mergeDeepIn(['model'].concat(path), value);
-    }
-    case REMOVE_IN_MODEL: {
-      const { path } = payload;
-      return state.removeIn(['model'].concat(path));
     }
     default: {
       return state;
