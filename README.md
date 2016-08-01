@@ -17,4 +17,3 @@ to change them.
 
 - Write more unit tests
 - Refactor duplicated code in client and server stores to be shared
-- Add a basic framework for pushing updates between client and server

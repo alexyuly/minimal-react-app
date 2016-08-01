@@ -10,9 +10,10 @@ import bindServerEvents from './util/bindServerEvents';
 const app = express();
 if (process.env.npm_lifecycle_event === 'debug') {
   const compiler = webpack(webpackConfig);
-  app.use(webpackHotMiddleware(compiler));
   app.use(webpackDevMiddleware(compiler, { publicPath: '/' }));
-} else {
+  app.use(webpackHotMiddleware(compiler));
+}
+else {
   app.use(express.static(path.join(__dirname, '../client_dist')));
 }
 bindServerEvents(io(app.listen(3000)));

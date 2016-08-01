@@ -2,7 +2,23 @@ import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
 import Immutable from 'immutable';
 
-const MERGE_IN_MODEL = 'MERGE_IN_MODEL';
+const ADD_DATUM = 'ADD_DATUM';
+const REMOVE_DATUM = 'REMOVE_DATUM';
+const SET_DATA = 'SET_DATA';
+
+export function addDatum(id, content) {
+  return {
+    type: ADD_DATUM,
+    payload: { id, content },
+  };
+}
+
+export function removeDatum(id) {
+  return {
+    type: REMOVE_DATUM,
+    payload: { id },
+  };
+}
 
 const initialState = Immutable.fromJS({
   model: {
@@ -13,9 +29,17 @@ const initialState = Immutable.fromJS({
 function reducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
-    case MERGE_IN_MODEL: {
-      const { path, value } = payload;
-      return state.mergeDeepIn(['model'].concat(path), value);
+    case ADD_DATUM: {
+      const datum = Immutable.fromJS(payload);
+      return state.updateIn(['model', 'data'], data => data.push(datum));
+    }
+    case REMOVE_DATUM: {
+      const index = state.getIn(['model', 'data']).findIndex(datum => datum.id === payload.id);
+      return state.updateIn(['model', 'data'], data => data.remove(index));
+    }
+    case SET_DATA: {
+      const data = Immutable.fromJS(payload.data);
+      return state.setIn(['model', 'data'], data);
     }
     default: {
       return state;
@@ -29,6 +53,6 @@ if (process.env.NODE_ENV === 'debug') {
     stateTransformer: state => state.toJS(),
   }));
 }
-const store = createStore(reducer, applyMiddleware(...middleware));
 
+const store = createStore(reducer, applyMiddleware(...middleware));
 export default store;

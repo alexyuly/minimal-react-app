@@ -1,10 +1,15 @@
 import bindClientEvents from './bindClientEvents';
-import dataSource from './dataSource';
-import store, { addClient, mergeInModel } from './store';
+import dataSource, { setData } from './dataSource';
+import store, { addClient } from './store';
+
+function dispatchInitialData(client) {
+  const data = dataSource.getState().get('data').toJS();
+  client.emit('dispatch', setData(data));
+}
 
 function handleConnection(client) {
   store.dispatch(addClient(bindClientEvents(client)));
-  client.emit('dispatch', mergeInModel(dataSource));
+  dispatchInitialData(client);
 }
 
 export default function bindServerEvents(server) {

@@ -4,7 +4,6 @@ import Immutable from 'immutable';
 
 const ADD_CLIENT = 'ADD_CLIENT';
 const REMOVE_CLIENT = 'REMOVE_CLIENT';
-const MERGE_IN_MODEL = 'MERGE_IN_MODEL';
 
 export function addClient(socket) {
   return {
@@ -17,13 +16,6 @@ export function removeClient(socket) {
   return {
     type: REMOVE_CLIENT,
     payload: { socket },
-  };
-}
-
-export function mergeInModel(value, path = []) {
-  return {
-    type: MERGE_IN_MODEL,
-    payload: { path, value },
   };
 }
 
@@ -49,11 +41,12 @@ export function reducer(state = initialState, action) {
 }
 
 const middleware = [];
-if (process.env.NODE_ENV === 'debug') {
+if (process.env.npm_lifecycle_event === 'debug') {
   middleware.push(createLogger({
     stateTransformer: state => state.toJS(),
+    colors: false,
   }));
 }
-const store = createStore(reducer, applyMiddleware(...middleware));
 
+const store = createStore(reducer, applyMiddleware(...middleware));
 export default store;
