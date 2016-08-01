@@ -2,8 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Container from './Container';
-import MainContent from './MainContent';
 import Navbar from './Navbar';
 import Sidebar from './Sidebar';
 
@@ -12,7 +10,7 @@ class App extends Component {
   static navbarHeight = 50
   static propTypes = {
     data: PropTypes.object,
-    sidebarVisible: PropTypes.boolean,
+    sidebarVisible: PropTypes.bool,
   }
   static mapStateToProps(state) {
     return {
@@ -30,20 +28,19 @@ class App extends Component {
           },
         })}
       >
-        <Container>
+        <div>
           <Navbar
             brandWidth={App.brandWidth}
             height={App.navbarHeight}
             sidebarVisible={sidebarVisible}
           />
-          <MainContent>
-            <Sidebar
-              data={data}
-              visible={sidebarVisible}
-              width={App.brandWidth}
-            />
-          </MainContent>
-        </Container>
+          <Sidebar
+            data={data}
+            top={App.navbarHeight}
+            visible={sidebarVisible}
+            width={App.brandWidth}
+          />
+        </div>
       </MuiThemeProvider>
     );
   }

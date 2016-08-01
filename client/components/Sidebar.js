@@ -1,78 +1,67 @@
 import React, { Component, PropTypes } from 'react';
+import Paper from 'material-ui/Paper';
 import { List, ListItem } from 'material-ui/List';
-import RaisedButton from 'material-ui/RaisedButton';
 import client from '../util/client';
 import store, { addDatum, removeDatum } from '../util/store';
 
 class Sidebar extends Component {
   static propTypes = {
     data: PropTypes.object,
-    visible: PropTypes.boolean,
+    top: PropTypes.number,
+    visible: PropTypes.bool,
     width: PropTypes.number,
   }
-  getLastDatum() {
-    const { data } = this.props;
-    return data.max((a, b) => a.get('id') - b.get('id'));
+  static removeDatum(id) {
+    const action = removeDatum(id);
+    store.dispatch(action);
+    client.dispatch(action);
   }
-  addDatum() {
-    const lastDatum = this.getLastDatum();
+  addNextDatum() {
+    const { data } = this.props;
+    const lastDatum = data.max((a, b) => a.get('id') - b.get('id'));
     const nextDatumId = lastDatum ? lastDatum.get('id') + 1 : 1;
     const action = addDatum(nextDatumId, `Datum ${nextDatumId}`);
     store.dispatch(action);
     client.dispatch(action);
   }
-  removeDatum() {
-    const lastDatum = this.getLastDatum();
-    if (lastDatum) {
-      const action = removeDatum(lastDatum.get('id'));
-      store.dispatch(action);
-      client.dispatch(action);
-    }
-  }
   render() {
-    const { data, visible, width } = this.props;
+    const { data, top, visible, width } = this.props;
     return (
-      <div
+      <Paper
         style={{
-          background: '#eeeeee',
+          alignItems: 'stretch',
+          bottom: '0px',
           display: visible ? 'flex' : 'none',
-          flex: `0 ${width}px`,
           flexFlow: 'column nowrap',
           justifyContent: 'stretch',
+          left: '0px',
+          position: 'fixed',
+          top: `${top}px`,
+          width: `${width}px`,
         }}
+        zDepth={2}
       >
-        <div
-          style={{
-            display: 'flex',
-            flex: '0 auto',
-            flexFlow: 'row wrap',
-            justifyContent: 'center',
-          }}
-        >
-          <RaisedButton
-            primary
-            label="Add"
-            onClick={() => this.addDatum()}
-          />
-          <RaisedButton
-            secondary
-            label="Remove"
-            onClick={() => this.removeDatum()}
-          />
-        </div>
         <List
           style={{
-            flex: '1 auto',
+            flex: 'auto',
             overflow: 'scroll',
           }}
         >
+          <ListItem
+            primaryText="Add one"
+            onClick={() => this.addNextDatum()}
+          />
           {
             data.toJS().map(datum =>
-              <ListItem key={datum.id} primaryText={datum.content} />
+              <ListItem
+                key={datum.id}
+                primaryText={datum.content}
+                onClick={() => Sidebar.removeDatum(datum.id)}
+              />
             )
           }
         </List>
-      </div>
+      </Paper>
     );
   }
 }

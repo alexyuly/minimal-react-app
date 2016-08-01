@@ -10,7 +10,7 @@ class Navbar extends Component {
   static propTypes = {
     brandWidth: PropTypes.number,
     height: PropTypes.number,
-    sidebarVisible: PropTypes.boolean,
+    sidebarVisible: PropTypes.bool,
     toggleSidebarVisible: PropTypes.func,
   }
   static mapStateToProps() {
@@ -30,9 +30,13 @@ class Navbar extends Component {
         style={{
           alignItems: 'stretch',
           display: 'flex',
-          flex: `0 ${height}px`,
           flexFlow: 'row nowrap',
           justifyContent: 'stretch',
+          left: '0px',
+          height: `${height}px`,
+          position: 'fixed',
+          top: '0px',
+          width: '100%',
         }}
       >
         <div style={{ flex: `0 ${brandWidth}px` }}>

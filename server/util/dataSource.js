@@ -38,7 +38,8 @@ function reducer(state = initialState, action) {
       return state.update('data', data => data.push(datum));
     }
     case REMOVE_DATUM: {
-      const index = state.get('data').findIndex(datum => datum.id === payload.id);
+      const index = state.get('data')
+        .findIndex(datum => datum.get('id') === payload.id);
       return state.update('data', data => data.remove(index));
     }
     case SET_DATA: {
