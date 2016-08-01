@@ -34,7 +34,7 @@ if (process.env.npm_lifecycle_event === 'debug') {
   app.use(webpackHotMiddleware(compiler));
 }
 else {
-  app.use(express.static(path.join(__dirname, '../client_dist')));
+  app.use(express.static(path.join(__dirname, '../../client_dist')));
 }
 
 const server = new Server(app.listen(3000));
