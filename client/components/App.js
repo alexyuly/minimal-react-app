@@ -12,14 +12,16 @@ class App extends Component {
   static navbarHeight = 50
   static propTypes = {
     data: PropTypes.object,
+    sidebarVisible: PropTypes.boolean,
   }
   static mapStateToProps(state) {
     return {
       data: state.getIn(['model', 'data']),
+      sidebarVisible: state.getIn(['ui', 'sidebarVisible']),
     };
   }
   render() {
-    const { data } = this.props;
+    const { data, sidebarVisible } = this.props;
     return (
       <MuiThemeProvider
         muiTheme={getMuiTheme({
@@ -29,9 +31,17 @@ class App extends Component {
         })}
       >
         <Container>
-          <Navbar brandWidth={App.brandWidth} height={App.navbarHeight} />
+          <Navbar
+            brandWidth={App.brandWidth}
+            height={App.navbarHeight}
+            sidebarVisible={sidebarVisible}
+          />
           <MainContent>
-            <Sidebar data={data} width={App.brandWidth} />
+            <Sidebar
+              data={data}
+              visible={sidebarVisible}
+              width={App.brandWidth}
+            />
           </MainContent>
         </Container>
       </MuiThemeProvider>

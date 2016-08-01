@@ -1,7 +1,7 @@
 {
   "name": "full-stack-template",
   "version": "1.0.0",
-  "description": "A very generic template for a typical full-stack socket-based Node.js web app",
+  "description": "A very generic and minimalistic template for a full-stack socket-based Node.js web app",
   "main": "server/index.js",
   "scripts": {
     "postinstall": "npm run build",

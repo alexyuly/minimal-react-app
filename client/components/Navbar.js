@@ -1,16 +1,30 @@
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationMenu from 'material-ui/svg-icons/navigation/menu';
 import SocialPerson from 'material-ui/svg-icons/social/person';
+import { setUiProp } from '../util/store';
 
 class Navbar extends Component {
   static propTypes = {
     brandWidth: PropTypes.number,
     height: PropTypes.number,
-  };
+    sidebarVisible: PropTypes.boolean,
+    toggleSidebarVisible: PropTypes.func,
+  }
+  static mapStateToProps() {
+    return {};
+  }
+  static mapDispatchToProps(dispatch, { sidebarVisible }) {
+    return {
+      toggleSidebarVisible() {
+        dispatch(setUiProp('sidebarVisible', !sidebarVisible));
+      },
+    };
+  }
   render() {
-    const { brandWidth, height } = this.props;
+    const { brandWidth, height, toggleSidebarVisible } = this.props;
     return (
       <div
         style={{
@@ -23,12 +37,11 @@ class Navbar extends Component {
       >
         <div style={{ flex: `0 ${brandWidth}px` }}>
           <AppBar
-            iconElementRight={
-              <IconButton>
+            iconElementLeft={
+              <IconButton onClick={toggleSidebarVisible}>
                 <NavigationMenu color="#ffffff" />
               </IconButton>
             }
-            showMenuIconButton={false}
             style={{ paddingLeft: '16px', paddingRight: '16px' }}
             title="Untitled web app"
             titleStyle={{ fontSize: '16px' }}
@@ -52,4 +65,7 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default connect(
+  Navbar.mapStateToProps,
+  Navbar.mapDispatchToProps
+)(Navbar);

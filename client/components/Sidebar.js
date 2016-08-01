@@ -7,19 +7,22 @@ import store, { addDatum, removeDatum } from '../util/store';
 class Sidebar extends Component {
   static propTypes = {
     data: PropTypes.object,
+    visible: PropTypes.boolean,
     width: PropTypes.number,
   }
-  addDatum() {
+  getLastDatum() {
     const { data } = this.props;
-    const lastDatum = data.max((a, b) => a.get('id') - b.get('id'));
-    const nextDatumId = (lastDatum ? lastDatum.get('id') : 0) + 1;
+    return data.max((a, b) => a.get('id') - b.get('id'));
+  }
+  addDatum() {
+    const lastDatum = this.getLastDatum();
+    const nextDatumId = lastDatum ? lastDatum.get('id') + 1 : 1;
     const action = addDatum(nextDatumId, `Datum ${nextDatumId}`);
     store.dispatch(action);
     client.dispatch(action);
   }
   removeDatum() {
-    const { data } = this.props;
-    const lastDatum = data.max((a, b) => a.get('id') - b.get('id'));
+    const lastDatum = this.getLastDatum();
     if (lastDatum) {
       const action = removeDatum(lastDatum.get('id'));
       store.dispatch(action);
@@ -27,17 +30,42 @@ class Sidebar extends Component {
     }
   }
   render() {
-    const { data, width } = this.props;
+    const { data, visible, width } = this.props;
     return (
       <div
         style={{
           background: '#eeeeee',
+          display: visible ? 'flex' : 'none',
           flex: `0 ${width}px`,
+          flexFlow: 'column nowrap',
+          justifyContent: 'stretch',
         }}
       >
-        <RaisedButton label="Add" primary onClick={() => this.addDatum()} />
-        <RaisedButton label="Remove" secondary onClick={() => this.removeDatum()} />
-        <List>
+        <div
+          style={{
+            display: 'flex',
+            flex: '0 auto',
+            flexFlow: 'row wrap',
+            justifyContent: 'center',
+          }}
+        >
+          <RaisedButton
+            primary
+            label="Add"
+            onClick={() => this.addDatum()}
+          />
+          <RaisedButton
+            secondary
+            label="Remove"
+            onClick={() => this.removeDatum()}
+          />
+        </div>
+        <List
+          style={{
+            flex: '1 auto',
+            overflow: 'scroll',
+          }}
+        >
           {
             data.toJS().map(datum =>
               <ListItem key={datum.id} primaryText={datum.content} />

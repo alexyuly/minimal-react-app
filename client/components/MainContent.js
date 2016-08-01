@@ -3,16 +3,16 @@ import React, { Component, PropTypes } from 'react';
 class MainContent extends Component {
   static propTypes = {
     children: PropTypes.node,
-  };
+  }
   render() {
     return (
       <div
         style={{
-          flex: '1 auto',
+          alignItems: 'stretch',
           display: 'flex',
+          flex: '1 auto',
           flexFlow: 'row nowrap',
           justifyContent: 'stretch',
-          alignItems: 'stretch',
         }}
       >
         {this.props.children}
