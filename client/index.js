@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import server from './util/server';
+import client from './util/client';
 import store from './util/store';
 
 ReactDOM.render(
@@ -14,4 +14,4 @@ ReactDOM.render(
   document.getElementById('render-target')
 );
 
-server.connect();
+client.connect();

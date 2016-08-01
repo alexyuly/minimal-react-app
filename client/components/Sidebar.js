@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { List, ListItem } from 'material-ui/List';
 import RaisedButton from 'material-ui/RaisedButton';
-import server from '../util/server';
+import client from '../util/client';
 import store, { addDatum, removeDatum } from '../util/store';
 
 class Sidebar extends Component {
@@ -15,7 +15,7 @@ class Sidebar extends Component {
     const nextDatumId = (lastDatum ? lastDatum.get('id') : 0) + 1;
     const action = addDatum(nextDatumId, `Datum ${nextDatumId}`);
     store.dispatch(action);
-    server.dispatch(action);
+    client.dispatch(action);
   }
   removeDatum() {
     const { data } = this.props;
@@ -23,7 +23,7 @@ class Sidebar extends Component {
     if (lastDatum) {
       const action = removeDatum(lastDatum.get('id'));
       store.dispatch(action);
-      server.dispatch(action);
+      client.dispatch(action);
     }
   }
   render() {
