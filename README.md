@@ -1,22 +1,6 @@
-# Note
+# minimal-react-app
 
-I highly recommend checking out [https://github.com/facebookincubator/create-react-app](create-react-app) for a fast, reliable way to create a new React-based front-end app. This repo, `full-stack-template`, is not currently maintained.
+I am going to refactor this repository into a tool to create React apps from a template with minimal build configuration and minimal project structure. Though inspired by https://github.com/facebookincubator/create-react-app, I have a few key design differences in mind:
 
-# full-stack-template
-
-[![CircleCI](https://circleci.com/gh/alexyuly/full-stack-template.svg?style=svg&circle-token=39c9879afcf215a11a96348ce6d1bbefc04e65de)](https://circleci.com/gh/alexyuly/full-stack-template)
-
-The purpose of this repo is to provide a very generic and very
-minimalistic template for a full-stack socket-based Node.js web app
-using react, redux, webpack, socket.io, and friends.
-
-## Notes
-
-- The npm scripts include some Unix-only syntax like `rm` and setting
-environment variables using `key=value`. If you run Windows you'll need
-to change them.
-
-## TODO
-
-- Write more unit tests
-- Refactor duplicated code in client and server stores to be shared
+- *No ejecting.* Fit the build configuration in a single webpack.config.js file, with no redundancy and no obscure build steps that aren't needed for the majority of projects. I shouldn't need to eject because the configuration should be simple enough that I don't want to hide it from view. Webpack is much friendlier now than when create-react-app first debuted. Let's fully embrace it.
+- *No default files I have to delete.* Do not bundle a bunch of useless "hello, world" files like default favicons, logos, home pages, etc. I'm just going to delete these and write my own. All I want is packages, build configuration, and a project structure that is as unopinionated as possible.
