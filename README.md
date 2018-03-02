@@ -1,4 +1,4 @@
-# Minimal React App
+# Minimal React App [![Build Status](https://circleci.com/gh/alexyuly/minimal-react-app/tree/master.svg?style=shield&circle-token=:circle-token)](https://circleci.com/gh/alexyuly/minimal-react-app)
 
 Create React apps with minimal build configuration.
 
