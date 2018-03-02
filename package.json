@@ -1,0 +1,39 @@
+{
+  "name": "minimal-react-app",
+  "version": "1.0.0",
+  "author": "Alex Yuly",
+  "description": "Create React apps with minimal build configuration.",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf build && webpack --mode production",
+    "start": "webpack-dev-server --open --mode development",
+    "test": "yarn test:lint",
+    "test:lint": "eslint src"
+  },
+  "dependencies": {
+    "@babel/polyfill": "7.0.0-beta.40",
+    "material-ui": "1.0.0-beta.35",
+    "prop-types": "15.6.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
+    "recompose": "0.26.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.40",
+    "@babel/preset-env": "7.0.0-beta.40",
+    "@babel/preset-react": "7.0.0-beta.40",
+    "babel-loader": "8.0.0-beta.1",
+    "css-loader": "0.28.10",
+    "eslint": "4.18.1",
+    "eslint-config-airbnb": "16.1.0",
+    "eslint-plugin-import": "2.9.0",
+    "eslint-plugin-jsx-a11y": "6.0.3",
+    "eslint-plugin-react": "7.7.0",
+    "html-webpack-plugin": "3.0.4",
+    "rimraf": "2.6.2",
+    "style-loader": "0.20.2",
+    "webpack": "4.0.1",
+    "webpack-cli": "2.0.10",
+    "webpack-dev-server": "3.1.0"
+  }
+}

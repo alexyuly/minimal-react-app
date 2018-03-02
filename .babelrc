@@ -1,0 +1,16 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": [
+            "last 4 versions"
+          ]
+        },
+        "shippedProposals": true
+      }
+    ],
+    "@babel/preset-react"
+  ]
+}
