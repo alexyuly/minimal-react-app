@@ -4,7 +4,7 @@ import component from './component';
 import styles from './styles';
 
 const App = compose(
-  withProps({ message: 'Hello, world!' }),
+  withProps({ message: process.env.MESSAGE }),
   withStyles(styles),
 )(component);
 

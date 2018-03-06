@@ -1,6 +1,6 @@
+const DotenvPlugin = require('dotenv-webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const webpack = require('webpack');
 
 module.exports = {
   entry: [
@@ -12,6 +12,7 @@ module.exports = {
     path: path.resolve(__dirname, 'build'),
     filename: 'app.js',
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -29,9 +30,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
-    }),
+    new DotenvPlugin(),
     new HtmlWebpackPlugin({
       title: 'Minimal React App',
       template: './src/index.html',
@@ -40,8 +39,4 @@ module.exports = {
       },
     }),
   ],
-  devtool: 'source-map',
-  devServer: {
-    port: 8080,
-  },
 };
