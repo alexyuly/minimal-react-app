@@ -1,6 +1,6 @@
 {
   "name": "minimal-react-app",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": "Alex Yuly",
   "description": "Create React apps with minimal build configuration.",
   "license": "MIT",
